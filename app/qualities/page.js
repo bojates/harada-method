@@ -22,11 +22,11 @@ export default function Page() {
         return (
         <div key={quality} className="p-2">
             <div>
-            <label for={quality} className="text-xl text-pink-900 font-semibold block">{quality}</label>
+            <label htmlFor={quality} className="text-xl text-pink-900 font-semibold block">{quality}</label>
             <input onChange={handleQuality} type="range" max={10} min={1} id={quality} list="values" name={quality} />
             </div>
             <div>
-            <label for={quality + '-improve'} className="py-3  block">Can be improved by: </label>
+            <label htmlFor={quality + '-improve'} className="py-3  block">Can be improved by: </label>
             <input className='p-1' type="text" size="38" maxLength={100} id={quality+ '-improve'}/>
             </div>
         </div>
