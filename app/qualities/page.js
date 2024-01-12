@@ -36,7 +36,7 @@ export default function Page() {
     return (
         <main className="p-10">
             <h1 className="text-2xl font-bold">Qualities</h1>
-            <h2 className="text-xl font-bold text-blue-800">Let's assess our qualities.</h2>
+            <h2 className="text-xl font-bold text-blue-800">Assess your qualities.</h2>
             <form>
             <datalist id="values">
                 <option value="2"></option>
