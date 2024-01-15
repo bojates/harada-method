@@ -37,6 +37,15 @@ export default function NavMenu() {
             Home
           </li>
         </Link>
+        <Link href="/qualities">
+          <li
+            className={
+              pathname === "/qualities" ? ACTIVE_ROUTE : INACTIVE_ROUTE
+            }
+          >
+            Qualities
+          </li>
+        </Link>
         <Link href="/protected">
           <li
             className={
