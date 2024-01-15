@@ -37,7 +37,9 @@ export default function Home() {
           height={37}
           priority
         />
+  
       </div>
+        <button className="text-lg font-semibold bg-pink-300 p-3 rounded-md">Sign in</button>
 
       <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
         <a
