@@ -1,6 +1,14 @@
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 import Qualities from "../components/QualitiesSelector";
 
-export default function Page() {
+export default async function Page() {
+    const session = await getServerSession();
+
+    if (!session || !session.user) { 
+        redirect('/api/auth/signin');
+    }
+    
     return (
         <main className="p-10">
             <h1 className="text-2xl font-bold">Qualities</h1>
