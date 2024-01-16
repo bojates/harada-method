@@ -1,16 +1,9 @@
-// import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
 import Qualities from "../../components/qualities-selector";
 
 export default async function Page() {
-    // const session = await getServerSession();
-
-    // if (!session || !session.user) { 
-    //     redirect('/api/auth/signin');
-    // }
     
     return (
-        <main className="p-10">
+        <main>
             <h1 className="text-2xl font-bold">Qualities</h1>
             <h2 className="text-xl font-bold text-blue-800">Assess your qualities.</h2>
             <form>
