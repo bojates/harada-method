@@ -7,6 +7,7 @@ export default async function Home() {
   // const greeting = session?.user?.name ? session.user.name : "you're not logged in"
   return (
     <>
+    
     <h1 className='text-2xl'>Hello, {greeting}</h1>
     </>
   )

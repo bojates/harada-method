@@ -1,6 +1,6 @@
 // import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import Qualities from "../../components/QualitiesSelector";
+import Qualities from "../../components/qualities-selector";
 
 export default async function Page() {
     // const session = await getServerSession();

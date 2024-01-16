@@ -1,4 +1,4 @@
-import NavMenu from "./NavMenu";
+import NavMenu from "./nav-menu";
 import { signOut } from "@/auth";
 // import { signOut } from "next-auth/react";
 

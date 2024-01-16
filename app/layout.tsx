@@ -1,10 +1,10 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
 
-// import { getServerSession } from "next-auth";
-import SessionProvider from './components/SessionProvider';
-import NavMenu from './components/NavMenu';
-import SideNav from './components/sidenav';
+import UserInfo from './components/user-info';
+import SessionProvider from './components/x-session-provider';
+import SideNav from './components/side-nav';
+import { auth } from "@/auth"
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,7 +18,7 @@ export default async function RootLayout({
  }: { 
   children: React.ReactNode
 }) {
-  // const session = await getServerSession();
+  const session = await auth();
 
   return (
     <html lang="en">
@@ -27,6 +27,7 @@ export default async function RootLayout({
         <SideNav />
           
           <main className="mx-auto max-w-5xl flex gap-p">
+          <UserInfo session={session} />
           {children}
           </main>
         {/* </SessionProvider> */}
