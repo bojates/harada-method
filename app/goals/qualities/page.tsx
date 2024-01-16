@@ -1,13 +1,13 @@
-import { getServerSession } from "next-auth";
+// import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import Qualities from "../components/QualitiesSelector";
+import Qualities from "../../components/QualitiesSelector";
 
 export default async function Page() {
-    const session = await getServerSession();
+    // const session = await getServerSession();
 
-    if (!session || !session.user) { 
-        redirect('/api/auth/signin');
-    }
+    // if (!session || !session.user) { 
+    //     redirect('/api/auth/signin');
+    // }
     
     return (
         <main className="p-10">

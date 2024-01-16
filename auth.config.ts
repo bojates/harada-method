@@ -1,11 +1,22 @@
 import type { NextAuthConfig } from 'next-auth';
-import GitHubProvider from "next-auth/providers/github"
 
-export const authOptions = {
+export const authConfig = {
+    // pages: {
+    //     signIn: '/login',
+    // },
+    callbacks: {
+        authorized({ auth, request: { nextUrl } }) {
+          const isLoggedIn = !!auth?.user;
+          const isOnDashboard = nextUrl.pathname.startsWith('/goals');
+          if (isOnDashboard) {
+            if (isLoggedIn) return true;
+            return false; // add comment
+          } else if (isLoggedIn) {
+            return Response.redirect(new URL('/goals', nextUrl));
+          }
+          return true;
+        },
+    },
     providers: [
-        GitHubProvider({
-            clientId: process.env.AUTH_GITHUB_ID ?? "", 
-            clientSecret: process.env.AUTH_GITHUB_SECRET ?? "",
-        }),
     ],
 } satisfies NextAuthConfig;
