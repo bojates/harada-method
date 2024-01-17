@@ -1,7 +1,6 @@
 'use client';
-import React, { useState, useEffect } from 'react'
+// import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-// import { useRouter } from 'next/navigation'
 import { usePathname } from "next/navigation";
 // import { signOut, signIn } from "@/auth";
 import { signOut } from 'next-auth/react'
@@ -13,7 +12,6 @@ import { FaSignOutAlt, FaSignInAlt } from 'react-icons/fa'
 // import logo from '@/img/logo.svg'
 
 export default function Sidebar({ show, setter, session }) {
-    // const router = useRouter();
     const pathname = usePathname();
     const isLoggedIn = !!session;
 
@@ -53,7 +51,6 @@ export default function Sidebar({ show, setter, session }) {
         />
     )
 
-
     function LogInOut() {
         if (session?.user) {
           return (
@@ -63,7 +60,7 @@ export default function Sidebar({ show, setter, session }) {
                 });
               }}
             >
-              <div className="flex gap-1 [&>*]:my-auto font-semibold text-md pl-6 py-3 border-b-[1px] border-b-white/10 text-black/90 hover:text-blue-800">
+              <div className="flex gap-1 [&>*]:my-auto font-semibold text-md pl-6 py-10 border-b-[1px] border-b-white/10 text-black/90 hover:text-blue-800">
               <div className="text-xl flex [&>*]:mx-auto w-[30px]">
                     <FaSignOutAlt />
                 </div>
@@ -77,7 +74,7 @@ export default function Sidebar({ show, setter, session }) {
         }
 
         return (
-            <div className="flex gap-1 [&>*]:my-auto font-semibold text-md pl-6 py-3 border-b-[1px] border-b-white/10 text-black/90 hover:text-blue-800">
+            <div className="flex gap-1 [&>*]:my-auto font-semibold text-md pl-6 py-10 border-b-[1px] border-b-white/10 text-black/90 hover:text-blue-800">
                 <div className="text-xl flex [&>*]:mx-auto w-[30px]">
                     <FaSignInAlt />
                 </div>
@@ -91,23 +88,16 @@ export default function Sidebar({ show, setter, session }) {
     return (
         <>
             <div className={`${className}${appendClass}`}>
-                {/* <div className="p-2 flex"> */}
-                    {/* <Link href="/"> */}
-                        {/*eslint-disable-next-line*/}
-                        {/* <img src={logo.src} alt="Company Logo" width={300} height={300} /> */}
-                    {/* </Link> */}
-                {/* </div> */}
                 
                 <div className="pt-4 flex flex-col">
-                    { !isLoggedIn && (
+                { !isLoggedIn ? (
                     
                     <MenuItem
                         name="Home"
                         route="/"
                         icon={<SlHome />}
                     />
-                    )}
-                    { isLoggedIn && (
+                ) :  (
                     <>
                     <MenuItem
                         name="Overview"
@@ -122,12 +112,6 @@ export default function Sidebar({ show, setter, session }) {
                     />
 </>
                     ) }
-                    {/* <MenuItem
-                        name="Contact"
-                        route="/contact"
-                        icon={<BsEnvelopeAt />}
-                    /> */}
-                    <br />
                     <LogInOut />
                 </div>
             </div>

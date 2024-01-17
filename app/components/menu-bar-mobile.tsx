@@ -1,10 +1,5 @@
-// @/components/Layout/MenuBarMobile.js
-import React from 'react'
-// import Link from 'next/link'
+// import React from 'react'
 import { FiMenu as Icon } from 'react-icons/fi'
-// import { FaUser } from 'react-icons/fa'
-
-// import logo from '@/img/logo.svg'
 
 export default function MenuBarMobile({ setter }) {
     return (
@@ -17,7 +12,6 @@ export default function MenuBarMobile({ setter }) {
             >
                 <Icon />
             </button>
-            
         </nav>
     )
 }
