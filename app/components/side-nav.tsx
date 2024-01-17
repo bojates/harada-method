@@ -13,7 +13,8 @@ export default function SideNav({ session }: { session: Session | null }) {
             await signOut();
           }}
         >
-          <li>
+          <li className="pt-8">
+          <hr className="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700" />
           <div className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
         <button className="ms-3">
           Sign Out
@@ -41,7 +42,6 @@ export default function SideNav({ session }: { session: Session | null }) {
    <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
       <ul className="space-y-2 font-medium">
         <NavItems />
-      
         <LogInOut />
       </ul>
    </div>
