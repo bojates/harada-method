@@ -1,14 +1,11 @@
-import { getServerSession } from "next-auth"
-
+/* eslint-disable react/no-unescaped-entities */
 export default async function Home() {
-  // const session = await getServerSession();
 
-  const greeting = 'woof'
-  // const greeting = session?.user?.name ? session.user.name : "you're not logged in"
+  const greeting = ""
   return (
     <>
-    
-    <h1 className='text-2xl'>Hello, {greeting}</h1>
+    <h1 className='text-2xl'>Hello</h1>
+    <p>This is the homepage when we're not logged in.</p>
     </>
   )
 }
