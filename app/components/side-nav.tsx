@@ -8,15 +8,14 @@ import { signOut } from 'next-auth/react'
 import { SlHome } from 'react-icons/sl'
 import { GrOverview } from "react-icons/gr";
 import { FaScaleUnbalanced } from "react-icons/fa6";
-
-import { BsInfoSquare, BsEnvelopeAt } from 'react-icons/bs'
-import { FaTshirt, FaRedhat, FaSignOutAlt } from 'react-icons/fa'
+import { FaSignOutAlt, FaSignInAlt } from 'react-icons/fa'
 
 // import logo from '@/img/logo.svg'
 
 export default function Sidebar({ show, setter, session }) {
     // const router = useRouter();
     const pathname = usePathname();
+    const isLoggedIn = !!session;
 
     // Define our base class
     const className = "bg-pink-100 w-[250px] transition-[margin-left] ease-in-out duration-500 fixed md:static top-0 bottom-0 left-0 z-40";
@@ -76,40 +75,53 @@ export default function Sidebar({ show, setter, session }) {
           </form>
           )
         }
-      //   // return (
-      //   //   <button className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3">
-      //   //      <a href="/api/auth/signin">Log In</a>
-      //   //   </button>
-      //   // )
-    
-      };
 
+        return (
+            <div className="flex gap-1 [&>*]:my-auto font-semibold text-md pl-6 py-3 border-b-[1px] border-b-white/10 text-black/90 hover:text-blue-800">
+                <div className="text-xl flex [&>*]:mx-auto w-[30px]">
+                    <FaSignInAlt />
+                </div>
+                <button>
+                    <a href="/api/auth/signin">Sign In</a>
+                </button>
+            </div>
+        )
+      };
+      
     return (
         <>
             <div className={`${className}${appendClass}`}>
-                <div className="p-2 flex">
-                    <Link href="/">
+                {/* <div className="p-2 flex"> */}
+                    {/* <Link href="/"> */}
                         {/*eslint-disable-next-line*/}
                         {/* <img src={logo.src} alt="Company Logo" width={300} height={300} /> */}
-                    </Link>
-                </div>
+                    {/* </Link> */}
+                {/* </div> */}
                 
-                <div className="flex flex-col">
+                <div className="pt-4 flex flex-col">
+                    { !isLoggedIn && (
+                    
                     <MenuItem
                         name="Home"
                         route="/"
                         icon={<SlHome />}
                     />
+                    )}
+                    { isLoggedIn && (
+                    <>
                     <MenuItem
                         name="Overview"
                         route="/goals"
                         icon={<GrOverview />}
                     />
+                    
                     <MenuItem
                         name="Qualities"
                         route="/goals/qualities"
                         icon={<FaScaleUnbalanced />}
                     />
+</>
+                    ) }
                     {/* <MenuItem
                         name="Contact"
                         route="/contact"
