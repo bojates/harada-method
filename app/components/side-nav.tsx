@@ -1,54 +1,121 @@
-import { Session } from "next-auth/types";
-import NavItems from "./nav-items";
-import { signOut, signIn } from "@/auth";
+'use client';
+// import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { usePathname } from "next/navigation";
+// import { signOut, signIn } from "@/auth";
+import { signOut } from 'next-auth/react'
+import { SlHome } from 'react-icons/sl'
+import { GrOverview } from "react-icons/gr";
+import { FaScaleUnbalanced } from "react-icons/fa6";
+import { FaSignOutAlt, FaSignInAlt } from 'react-icons/fa'
 
-export default function SideNav({ session }: { session: Session | null }) {
-  
-  function LogInOut() {
-    if (session?.user) {
-      return (
-        <form
-          action={async () => {
-            'use server';
-            await signOut();
-          }}
-        >
-          <li>
-          <div className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-        <button className="ms-3">
-          Sign Out
-        </button>
-        </div>
-        </li>
-      </form>
-      )
+// import logo from '@/img/logo.svg'
+
+export default function Sidebar({ show, setter, session }) {
+    const pathname = usePathname();
+    const isLoggedIn = !!session;
+
+    // Define our base class
+    const className = "bg-pink-100 w-[250px] transition-[margin-left] ease-in-out duration-500 fixed md:static top-0 bottom-0 left-0 z-40";
+    // Append class based on state of sidebar visiblity
+    const appendClass = show ? " ml-0" : " ml-[-250px] md:ml-0";
+
+    // Clickable menu items
+    const MenuItem = ({ icon, name, route }) => {
+        // Highlight menu item based on currently displayed route
+        const colorClass = pathname === route ? "text-blue-800" : "text-black/90 hover:text-blue-800";
+
+        return (
+            <Link
+                href={route}
+                onClick={() => {
+                    setter(oldVal => !oldVal);
+                }}
+                className={`flex gap-1 [&>*]:my-auto font-semibold text-md pl-6 py-3 border-b-[1px] border-b-white/10 ${colorClass}`}
+            >
+                <div className="text-xl flex [&>*]:mx-auto w-[30px]">
+                    {icon}
+                </div>
+                <div>{name}</div>
+            </Link>
+        )
     }
-    // return (
-    //   <button className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3">
-    //      <a href="/api/auth/signin">Log In</a>
-    //   </button>
-    // )
-  }
-  
-  return (
-    <>
-      <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
-   <span className="sr-only">Open sidebar</span>
-   <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-   <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
-   </svg>
-</button><aside id="default-sidebar" className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-   <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-      <ul className="space-y-2 font-medium">
-        <NavItems />
+
+    // Overlay to prevent clicks in background, also serves as our close button
+    const ModalOverlay = () => (
+        <div
+            className={`flex md:hidden fixed top-0 right-0 bottom-0 left-0 bg-black/50 z-30`}
+            onClick={() => {
+                setter(oldVal => !oldVal);
+            }}
+        />
+    )
+
+    function LogInOut() {
+        if (session?.user) {
+          return (
+            <form
+              action={async () => {
+                await signOut({callbackUrl: '/', redirect: true, 
+                });
+              }}
+            >
+              <div className="flex gap-1 [&>*]:my-auto font-semibold text-md pl-6 py-10 border-b-[1px] border-b-white/10 text-black/90 hover:text-blue-800">
+              <div className="text-xl flex [&>*]:mx-auto w-[30px]">
+                    <FaSignOutAlt />
+                </div>
+            <button>
+              Sign Out
+            </button>
+            </div>
+
+          </form>
+          )
+        }
+
+        return (
+            <div className="flex gap-1 [&>*]:my-auto font-semibold text-md pl-6 py-10 border-b-[1px] border-b-white/10 text-black/90 hover:text-blue-800">
+                <div className="text-xl flex [&>*]:mx-auto w-[30px]">
+                    <FaSignInAlt />
+                </div>
+                <button>
+                    <a href="/api/auth/signin">Sign In</a>
+                </button>
+            </div>
+        )
+      };
       
-        <LogInOut />
-      </ul>
-   </div>
-</aside>
-
-      </>
-  )
+    return (
+        <>
+            <div className={`${className}${appendClass}`}>
+                
+                <div className="pt-4 flex flex-col">
+                { !isLoggedIn ? (
+                    
+                    <MenuItem
+                        name="Home"
+                        route="/"
+                        icon={<SlHome />}
+                    />
+                ) :  (
+                    <>
+                    <MenuItem
+                        name="Overview"
+                        route="/goals"
+                        icon={<GrOverview />}
+                    />
+                    
+                    <MenuItem
+                        name="Qualities"
+                        route="/goals/qualities"
+                        icon={<FaScaleUnbalanced />}
+                    />
+</>
+                    ) }
+                    <LogInOut />
+                </div>
+            </div>
+            {show ? <ModalOverlay /> : <></>}
+        </>
+    )
 }
-
-
