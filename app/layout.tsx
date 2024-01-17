@@ -24,8 +24,8 @@ export default async function RootLayout({
       <body className='bg-gray-100'>
           <SideNav session={session} />
 
-          <div class="p-4 sm:ml-64">
-         <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+          <div className="p-4 sm:ml-64">
+         <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
      
           
 

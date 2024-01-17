@@ -55,7 +55,7 @@ export default function Qualities() {
         </div>
         <div>
         <label htmlFor={quality + '-improve'} className="py-3  block">Can be improved by: </label>
-        <input className='p-1' type="text" size="38" maxLength={100} id={quality+ '-improve'}/>
+        <input className='p-1' type="text" maxLength={100} id={quality+ '-improve'}/>
         </div>
     </div>
     )
