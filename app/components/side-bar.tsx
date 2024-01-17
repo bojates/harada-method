@@ -1,16 +1,18 @@
 // @/components/Layout/Sidebar.js
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+// import { useRouter } from 'next/navigation'
+import { usePathname } from "next/navigation";
 
-// import { SlHome } from 'react-icons/sl'
-// import { BsInfoSquare, BsEnvelopeAt } from 'react-icons/bs'
-// import { FaTshirt, FaRedhat } from 'react-icons/fa'
+import { SlHome } from 'react-icons/sl'
+import { BsInfoSquare, BsEnvelopeAt } from 'react-icons/bs'
+import { FaTshirt, FaRedhat } from 'react-icons/fa'
 
 // import logo from '@/img/logo.svg'
 
 export default function Sidebar({ show, setter }) {
-    const router = useRouter();
+    // const router = useRouter();
+    const pathname = usePathname();
 
     // Define our base class
     const className = "bg-black w-[250px] transition-[margin-left] ease-in-out duration-500 fixed md:static top-0 bottom-0 left-0 z-40";
@@ -20,7 +22,7 @@ export default function Sidebar({ show, setter }) {
     // Clickable menu items
     const MenuItem = ({ icon, name, route }) => {
         // Highlight menu item based on currently displayed route
-        const colorClass = router.pathname === route ? "text-white" : "text-white/50 hover:text-white";
+        const colorClass = pathname === route ? "text-white" : "text-white/50 hover:text-white";
 
         return (
             <Link
@@ -61,32 +63,27 @@ export default function Sidebar({ show, setter }) {
                     <MenuItem
                         name="Home"
                         route="/"
-                        // icon={<SlHome />}
-                        icon=""
+                        icon={<SlHome />}
                     />
                     <MenuItem
                         name="T-Shirts"
                         route="/t-shirts"
-                        // icon={<FaTshirt />}
-                        icon=""
+                        icon={<FaTshirt />}
                     />
                     <MenuItem
                         name="Hats"
                         route="/hats"
-                        // icon={<FaRedhat />}
-                        icon=""
+                        icon={<FaRedhat />}
                     />
                     <MenuItem
                         name="About Us"
                         route="/about"
-                        // icon={<BsInfoSquare />}
-                        icon=""
+                        icon={<BsInfoSquare />}
                     />
                     <MenuItem
                         name="Contact"
                         route="/contact"
-                        // icon={<BsEnvelopeAt />}
-                        icon=""
+                        icon={<BsEnvelopeAt />}
                     />
                 </div>
             </div>

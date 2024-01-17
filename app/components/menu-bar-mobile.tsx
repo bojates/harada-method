@@ -1,10 +1,10 @@
 // @/components/Layout/MenuBarMobile.js
 import React from 'react'
-import Link from 'next/link'
-// import { FiMenu as Icon } from 'react-icons/fi'
+// import Link from 'next/link'
+import { FiMenu as Icon } from 'react-icons/fi'
 // import { FaUser } from 'react-icons/fa'
 
-import logo from '@/img/logo.svg'
+// import logo from '@/img/logo.svg'
 
 export default function MenuBarMobile({ setter }) {
     return (
@@ -15,16 +15,9 @@ export default function MenuBarMobile({ setter }) {
                     setter(oldVal => !oldVal);
                 }}
             >
-                {/* <Icon /> */}
-                my button
+                <Icon />
             </button>
             
-            <Link
-                className="text-3xl flex text-white"
-                href="/login"
-            >
-                {/* <FaUser /> */}
-            </Link>
         </nav>
     )
 }
