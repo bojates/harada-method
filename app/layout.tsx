@@ -1,10 +1,9 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
-
-import UserInfo from './components/user-info';
-import SideNav from './components/side-nav';
+import SideNav from './components/side-nav-wrapper';
 import { auth } from "@/auth"
 
+// import UserInfo from './components/user-info';
 // import React, { useState } from 'react'
 // import Head from 'next/head'
 // import Sidebar from './components/side-bar';
@@ -25,17 +24,12 @@ export default async function RootLayout({
 }) {
   const session = await auth();
    
-  // Mobile sidebar visibility state
-   // const [showSidebar, setShowSidebar] = useState(false);
-
   return (
     <html lang="en">
       <body className='bg-gray-100'>
       <div className="min-h-screen">
                 <div className="flex">
-                    {/* <MenuBarMobile setter={setShowSidebar} />
-                    <Sidebar show={showSidebar} setter={setShowSidebar} /> */}
-         <SideNav session={session} />
+                     <SideNav session={session} />
                     <div className="flex flex-col flex-grow w-screen md:w-full min-h-screen">
                         {children}
                     </div>
