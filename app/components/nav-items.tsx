@@ -9,8 +9,8 @@ const Nav = [
   'path': '/goals/qualities'}
 ] 
 
-// export default function NavMenu() {
-export default function NavMenu({ session }: { session: Session | null }) {
+export default function NavMenu() {
+// export default function NavMenu({ session }: { session: Session | null }) {
     const pathname = usePathname();
 
     return  Nav.map(navItem => {
